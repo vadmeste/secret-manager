@@ -62,5 +62,5 @@ _pwd_payload=$(keyctl print ${_pwd_keyid} 2>/dev/null)
 	echo "Cannot find your password payload. Quitting.." && exit 1
 
 # Replace {} by the actual password and execute the cmd
-$(echo $@ | sed "s/{}/$(keyctl print ${_pwd_keyid})/") 
+$(echo $@ | sed "s/{}/$(keyctl print ${_pwd_keyid})/g")
 
