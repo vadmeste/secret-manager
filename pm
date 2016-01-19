@@ -1,5 +1,4 @@
 #!/bin/bash
-
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,20 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Author: vadmeste at gmail dot com (Anis Elleuch)
+# AUTHOR: vadmeste at gmail dot com (Anis Elleuch)
 #
-
 #   pm (as password manager) is a wrapper of keyctl tool to make it easier to 
 # execute commands which require a typed password to be able to work, the user
 # has to enter his plain password only once.
-
+#
 #  e.g.
 #    $ pm -s     # to start a new pm session
 #    $ pm mysql -u root -p{} 'select count(*) from users;'
-#    Password:   # type your plain password here
+#    Password:   # {} will be replaced by your plain password
 #    $ pm mysql -u root -p{} 'select id from users;'
 #    $ exit
-
+#
+# STILL BETA version. Use it at your own risk.
 
 [ -z $(which keyctl 2>/dev/null) ] &&
     echo "Please install keyutils tool with your package manager" \
@@ -38,10 +37,10 @@ while getopts ":sh" opt; do
       keyctl session || exit 0
       ;;
     h)
-	echo "USAGE: pm [-h | -s] [cmd [args..]]"
-	echo "    -h   show this help."
-	echo "    -s   start a new keyring session."
-        exit 1
+      echo "USAGE: pm [-h | -s] [cmd [args..]]"
+      echo "    -h   show this help."
+      echo "    -s   start a new keyring session."
+      exit 1
       ;;
     \?)
       echo "${OPTARG} : invalid option"
