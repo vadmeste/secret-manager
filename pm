@@ -22,6 +22,9 @@
     echo "Please install keyutils tool with your package manager" \
 	    "or from https://people.redhat.com/dhowells/keyutils/" && exit 1
 
+grep "CONFIG_KEYS=y" /boot/config-$(uname -r) >/dev/null || \
+    echo "CONFIG_KEYS is not activated in your kernel. Quitting.." && exit 1
+
 while getopts ":sh" opt; do
   case ${opt} in
     s)
