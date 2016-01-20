@@ -53,7 +53,7 @@ done
 # ask for password otherwise
 _pwd_keyid=$(keyctl request user pm_key 2>/dev/null || ( \
 		read -s -p "Password:" pm_pwd && \
-		keyctl add user pm_key ${pm_pwd} @s \
+		keyctl add user pm_key "${pm_pwd}" @s \
 	    ))
 
 _pwd_payload=$(keyctl print ${_pwd_keyid} 2>/dev/null)
