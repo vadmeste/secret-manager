@@ -34,7 +34,7 @@
 while getopts ":sh" opt; do
   case ${opt} in
     s)
-      keyctl session || exit 0
+      keyctl session ; echo "Quitting keyring session.." && exit 0
       ;;
     h)
       echo "USAGE: pm [-h | -s] [cmd [args..]]"
