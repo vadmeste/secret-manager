@@ -26,15 +26,20 @@ grep "CONFIG_KEYS=y" /boot/config-$(uname -r) 1>/dev/null || ( \
     echo "CONFIG_KEYS is not activated in your kernel. Quitting.." && \
     exit 1 )
 
-while getopts ":sh" opt; do
+while getopts ":shr:" opt; do
   case ${opt} in
     s)
       keyctl session ; echo "Quitting keyring session.." && exit 0
       ;;
+    r)
+      _replace_str="${OPTARG}"
+      shift
+      ;;
     h)
-      echo "USAGE: pm [-h | -s] [cmd [args..]]"
+      echo "USAGE: pm [-h | -s | -r] [cmd [args..]]"
       echo "    -h   show this help."
       echo "    -s   start a new keyring session."
+      echo "    -r   replace-str param. (default: {})"
       exit 1
       ;;
     \?)
@@ -43,6 +48,8 @@ while getopts ":sh" opt; do
       ;;
   esac
 done
+
+[ -z "${_replace_str}" ] && _replace_str="{}"
 
 # Retrieve the key belonging to the current keyring session, 
 # ask for password otherwise
@@ -57,5 +64,5 @@ _pwd_payload=$(keyctl print "${_pwd_keyid}" 2>/dev/null)
 	echo "Cannot find your password payload. Quitting.." && exit 1
 
 # Replace {} by the actual password and execute the cmd
-$(echo $@ | sed "s/{}/${_pwd_payload}/g")
+$(echo $@ | sed "s/${_replace_str}/${_pwd_payload}/g")
 
