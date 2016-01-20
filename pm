@@ -13,19 +13,10 @@
 # limitations under the License.
 #
 # AUTHOR: vadmeste at gmail dot com (Anis Elleuch)
-#
-#   pm (as password manager) is a wrapper of keyctl tool to make it easier to 
-# execute commands which require a typed password to be able to work, the user
-# has to enter his plain password only once.
-#
-#  e.g.
-#    $ pm -s     # to start a new pm session
-#    $ pm mysql -u root -p{} 'select count(*) from users;'
-#    Password:   # {} will be replaced by your plain password
-#    $ pm mysql -u root -p{} 'select id from users;'
-#    $ exit
+# README: https://github.com/vadmeste/pm/blob/master/README.md
 #
 # STILL BETA version. Use it at your own risk.
+#
 
 [ -z "$(which keyctl 2>/dev/null)" ] &&
     echo "Please install keyutils tool with your package manager" \
