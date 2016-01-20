@@ -52,7 +52,7 @@ done
 # Retrieve the key belonging to the current keyring session, 
 # ask for password otherwise
 _pwd_keyid=$(keyctl request user pm_key 2>/dev/null || ( \
-		read -s -p "Password:" pm_pwd && \
+		read -s -p "Password: " pm_pwd && \
 		keyctl add user pm_key "${pm_pwd}" @s \
 	    ))
 
