@@ -27,7 +27,7 @@
 #
 # STILL BETA version. Use it at your own risk.
 
-[ -z $(which keyctl 2>/dev/null) ] &&
+[ -z "$(which keyctl 2>/dev/null)" ] &&
     echo "Please install keyutils tool with your package manager" \
 	    "or from https://people.redhat.com/dhowells/keyutils/" && exit 1
 
@@ -56,11 +56,11 @@ _pwd_keyid=$(keyctl request user pm_key 2>/dev/null || ( \
 		keyctl add user pm_key "${pm_pwd}" @s \
 	    ))
 
-_pwd_payload=$(keyctl print ${_pwd_keyid} 2>/dev/null)
+_pwd_payload=$(keyctl print "${_pwd_keyid}" 2>/dev/null)
 
-[ -z ${_pwd_keyid} -o -z ${_pwd_payload} ] && \
+[ -z "${_pwd_keyid}" -o -z "${_pwd_payload}" ] && \
 	echo "Cannot find your password payload. Quitting.." && exit 1
 
 # Replace {} by the actual password and execute the cmd
-$(echo $@ | sed "s/{}/$(keyctl print ${_pwd_keyid})/g")
+$(echo $@ | sed "s/{}/$(keyctl print "${_pwd_keyid}")/g")
 
