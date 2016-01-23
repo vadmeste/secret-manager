@@ -1,5 +1,4 @@
-dnl Copyright 2005-2014 Freetalk Core Team
-dnl GNU General Public license v3 or later
+dnl Copyright 2016 Secret Manager Team
 
 dnl Process this file with autoconf to produce a configure script
 
