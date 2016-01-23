@@ -1,44 +1,33 @@
-# pm
-A simple password manager for CLI.
+# secret-manager
+A simple secret manager for CLI.
 
-## Installation
-No installation script for the moment because pm is still under heavy development.
-
-## Manual installation
+## Building
 
 ```
-$ wget "https://raw.githubusercontent.com/vadmeste/pm/master/pm"
-$ chmod +x pm
+$ bash autogen.sh
+$ ./configure
+$ make
 ```
-
-Then, add the pm directory in your PATH environment variable in ~/.bashrc. Then you have to install keyutils and be sure that CONFIG_KEYS is enabled in your Linux kernel.
 
 ## User story
 
 * To see the help message:
-```
-$ pm -h
-```
-
-* To start a new pm session:
-```
-$ pm -s
-```
+  ```
+  $ sm -h
+  ```
 
 * To execute an arbitrary command:
-```
-$ pm curl http://your_username:{}@hostname/path
-Password: 
-```
+  ```
+  $ sm curl http://your_username:{}@hostname/path
+  Secret:
+  ```
+  sm will ask for a password which will replace {} in your entered command. The password is asked only once and it will be lost when you quit your session.
+  ```
+  $ sm curl http://your_username:{}@hostname/another_path
+  ...
+	```
 
-pm will ask for a password which will replace {} in your entered command. The password is asked only once and it will be lost when you quit your session.
-
-```
-$ pm curl http://your_username:{}@hostname/another_path
-...
-```
-
-* To quit your pm session
-```
-$ exit
-```
+* To quit your sm session
+  ```
+  $ sm -q
+  ```
