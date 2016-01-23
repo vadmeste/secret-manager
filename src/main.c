@@ -58,7 +58,6 @@ struct sm_opts*
 sm_opts_parse(int argc, char *argv[])
 {
 	int ch;
-	char *cur_arg = NULL;
 
 	struct sm_opts *opts = malloc(sizeof(struct sm_opts));
 	opts->flags = 0;
@@ -125,10 +124,10 @@ print_usage() {
 	printf("    -r   Specify the replace string. \n");
 }
 
-	int
+int
 main(int argc, char *argv[])
 {
-	int i, ret = 1;
+	int ret = 1;
 	char *secret_cmd = NULL;
 	struct sm_opts *opts = NULL;
 
