@@ -2,7 +2,7 @@ dnl Copyright 2016 Secret Manager Team
 
 dnl Process this file with autoconf to produce a configure script
 
-AC_INIT([secret-manager], [0.1.0], [https://github.com/vadmeste/sm/issues])
+AC_INIT([secret-manager], [0.1.0], [https://github.com/vadmeste/secret-manager/issues])
 AM_INIT_AUTOMAKE
 
 AC_PREREQ([2.57])
@@ -44,6 +44,6 @@ fi
 AC_CHECK_HEADERS([libintl.h])
 
 AC_CHECK_HEADERS([keyutils.h], [],
-				 [AC_MSG_ERROR(["Couldn't find keyutils library."])], []))
+				 [AC_MSG_ERROR(["Couldn't find keyutils library."])], [])
 
 AC_OUTPUT
