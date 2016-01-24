@@ -69,8 +69,11 @@ main(int argc, char *argv[])
 	// Start to request a key in the current session if present
 	key_id = request_key("user", session_name, NULL, KEY_SPEC_SESSION_KEYRING);
 
-	if (key_id > 0 && opts->flags & OPT_QUIT ) {
-		keyctl_revoke(key_id);
+	if (opts->flags & OPT_QUIT ) {
+		if (key_id > 0)
+			keyctl_revoke(key_id);
+		else
+			fprintf(stderr, "No keyring session could be found.\n");
 		ret = 0;
 		goto exit;
 	}
