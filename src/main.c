@@ -52,7 +52,6 @@ main(int argc, char *argv[])
 
 	// parse_opts gives use default values if not provided
 	opts = sm_opts_parse(argc, argv);
-	// printf("%s\n", sm_opts->cmd);
 	if (opts == NULL) {
 		ret = 1;
 		goto exit;
@@ -87,9 +86,9 @@ main(int argc, char *argv[])
 			ret = 1;
 			goto exit;
 		}
-		// To be able to find again the passphrase in the next execution of sm, we 
-		// have to attach the current keyring session to the shell interpreter which 
-		// executed this cmd
+		// To be able to find again the passphrase in the next execution of sm,
+		// we have to attach the current keyring session to the shell
+		// interpreter which executed this cmd
 		keyctl_session_to_parent();
 	} else {
 		// Read the passphrase

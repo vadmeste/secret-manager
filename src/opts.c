@@ -80,7 +80,6 @@ sm_opts_parse(int argc, char *argv[])
 	// Construct the cmd string
 	if (optind < argc) {
 		while (optind < argc) {
-			// printf("debug -- [%s]\n", argv[optind]);
 			opts->cmd = (char *) realloc(opts->cmd, 
 					strlen(opts->cmd) + strlen(" ") + strlen(argv[optind]) + 1);
 			strcat(opts->cmd, argv[optind]);
