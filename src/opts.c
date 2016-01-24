@@ -54,12 +54,15 @@ sm_opts_parse(int argc, char *argv[])
 			{0, 0, 0, 0 }
 		};
 		// + will stop parsing when getopt encouters a non flag arg
-		ch = getopt_long(argc, argv, "+hqr:", long_options, &option_index);
+		ch = getopt_long(argc, argv, "+hsqr:", long_options, &option_index);
 		if (ch == -1)
 			break;
 		switch (ch) {
 			case 'h':
 				opts->flags |= OPT_HELP;
+				break;
+			case 's':
+				opts->flags |= OPT_SHOW_KEYID;
 				break;
 			case 'r':
 				opts->repl_str = strdup(optarg);

@@ -33,8 +33,11 @@
 void
 print_usage() {
 	fprintf(stderr, "USAGE:\n");
-	fprintf(stderr, "  secret-manager  [-h | -q | -r] [CMD [ARGS...]] \n");
+	fprintf(stderr, "  secret-manager  [FLAGS] [CMD [ARGS...]] \n");
+	fprintf(stderr, "\n");
+	fprintf(stderr, "FLAGS:\n");
 	fprintf(stderr, "    -h   Show this help. \n");
+	fprintf(stderr, "    -s   Show current key id. \n");
 	fprintf(stderr, "    -q   Quit the keyring session. \n");
 	fprintf(stderr, "    -r   Specify the replace string. \n");
 }
@@ -76,6 +79,19 @@ main(int argc, char *argv[])
 			fprintf(stderr, "No keyring session could be found.\n");
 		ret = 0;
 		goto exit;
+	}
+
+	if (opts->flags & OPT_SHOW_KEYID) {
+		if (key_id > 0) {
+			printf("%d\n", key_id);
+			ret = 0;
+			goto exit;
+		}
+		else {
+			fprintf(stderr, "No key is attached to the current session.\n");
+			ret = 1;
+			goto exit;
+		}
 	}
 
 	if (key_id <= 0) {

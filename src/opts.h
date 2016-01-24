@@ -19,7 +19,8 @@
 #define OPT_HELP 0x0001
 #define OPT_QUIT 0x0002
 #define OPT_REPLACE_STR 0x0004
-#define OPT_UNRECOGNIZED 0x0008
+#define OPT_SHOW_KEYID 0x0008
+#define OPT_UNRECOGNIZED 0x0010
 
 // opts structure holds sm global data
 struct sm_opts {
