@@ -21,6 +21,7 @@
 #include <keyutils.h>
 #include <assert.h>
 
+#include "config.h"
 #include "str-replace.h"
 #include "opts.h"
 
@@ -37,6 +38,7 @@ print_usage() {
 	fprintf(stderr, "\n");
 	fprintf(stderr, "FLAGS:\n");
 	fprintf(stderr, "    -h   Show this help. \n");
+	fprintf(stderr, "    -v   Show version information. \n");
 	fprintf(stderr, "    -s   Show current key id. \n");
 	fprintf(stderr, "    -q   Quit the keyring session. \n");
 	fprintf(stderr, "    -r   Specify the replace string. \n");
@@ -62,6 +64,12 @@ main(int argc, char *argv[])
 
 	if (opts->flags & OPT_HELP || opts->flags & OPT_UNRECOGNIZED) {
 		print_usage();
+		ret = 0;
+		goto exit;
+	}
+
+	if (opts->flags & OPT_VERSION) {
+		fprintf(stderr, PACKAGE_NAME " " PACKAGE_VERSION "\n");
 		ret = 0;
 		goto exit;
 	}
