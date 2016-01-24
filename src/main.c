@@ -32,11 +32,11 @@
 
 void
 print_usage() {
-	printf("USAGE:\n");
-	printf("  secret-manager  [-h | -q | -r] [CMD [ARGS...]] \n");
-	printf("    -h   Show this help. \n");
-	printf("    -q   Quit the keyring session. \n");
-	printf("    -r   Specify the replace string. \n");
+	fprintf(stderr, "USAGE:\n");
+	fprintf(stderr, "  secret-manager  [-h | -q | -r] [CMD [ARGS...]] \n");
+	fprintf(stderr, "    -h   Show this help. \n");
+	fprintf(stderr, "    -q   Quit the keyring session. \n");
+	fprintf(stderr, "    -r   Specify the replace string. \n");
 }
 
 int
@@ -82,7 +82,7 @@ main(int argc, char *argv[])
 		key_id = add_key("user", session_name, key_payload, 
 				strlen(key_payload), KEY_SPEC_SESSION_KEYRING); 
 		if (key_id < 0) {
-			printf("FATAL: Cannot add a passphrase, is CONFIG_KEYS enabled in your kernel?\n");
+			fprintf(stderr, "FATAL: Cannot add a passphrase, is CONFIG_KEYS enabled in your kernel?\n");
 			ret = 1;
 			goto exit;
 		}
