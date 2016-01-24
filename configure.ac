@@ -42,6 +42,8 @@ fi
 # fi
  
 AC_CHECK_HEADERS([libintl.h])
-AC_CHECK_HEADERS([keyutils.h])
+
+AC_CHECK_HEADERS([keyutils.h], [],
+				 [AC_MSG_ERROR(["Couldn't find keyutils library."])], []))
 
 AC_OUTPUT
