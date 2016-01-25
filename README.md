@@ -1,7 +1,10 @@
 # secret-manager
 A simple secret manager for CLI.
+(under heavy development, use it at your own risk !!)
 
 ## Building
+
+Before compiling, you should ensure that keyutils library is installed and CONFIG_KEYS is enabled in your kernel, then:
 
 ```
 $ bash autogen.sh
