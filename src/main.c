@@ -1,4 +1,6 @@
 /* 
+# Copyright (c) 2016, Anis Elleuch / vadmeste at gmail dot com
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -32,7 +34,8 @@
 
 
 void
-print_usage() {
+print_usage()
+{
 	fprintf(stderr, "USAGE:\n");
 	fprintf(stderr, "  secret-manager  [FLAGS] [CMD [ARGS...]] \n");
 	fprintf(stderr, "\n");
@@ -94,8 +97,7 @@ main(int argc, char *argv[])
 			printf("%d\n", key_id);
 			ret = 0;
 			goto exit;
-		}
-		else {
+		} else {
 			fprintf(stderr, "No key is attached to the current session.\n");
 			ret = 1;
 			goto exit;
