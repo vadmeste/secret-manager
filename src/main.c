@@ -52,6 +52,8 @@ main(int argc, char *argv[])
 {
 	int ret = 1;
 	char *secret_cmd = NULL;
+	char *subprocess_argv[4];
+
 	struct sm_opts *opts = NULL;
 
 	key_serial_t key_id; 
@@ -133,8 +135,15 @@ main(int argc, char *argv[])
 
 	// Execute the secret cmd
 	if (secret_cmd) {
-		system(secret_cmd);
-		free(secret_cmd);
+		// Replacing the current executable image will at least return the exit
+		// code of the executed command
+		subprocess_argv[0] = "sh";
+		subprocess_argv[1] = "-c";
+		subprocess_argv[2] = secret_cmd;
+		subprocess_argv[3] = NULL;
+		execvp("/bin/sh", subprocess_argv);
+
+		assert(0);
 	}
 
 exit:
