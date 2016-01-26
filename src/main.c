@@ -113,6 +113,11 @@ main(int argc, char *argv[])
 		// Ask the user to enter his secret phrase and
 		memset(key_payload, 0, KEY_PAYLOAD_MAXLEN);
 		sprintf(key_payload, "%s", getpass("Secret: "));
+		if (strlen(key_payload) == 0) {
+			fprintf(stderr, "An empty secret phrase is not supported.\n");
+			ret = 1;
+			goto exit;
+		}
 		key_id = add_key("user", session_name, key_payload, 
 				strlen(key_payload), KEY_SPEC_SESSION_KEYRING); 
 		if (key_id < 0) {
