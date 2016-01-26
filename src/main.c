@@ -46,6 +46,8 @@ print_usage()
 	fprintf(stderr, "    -t   Set the key id timeout. \n");
 	fprintf(stderr, "    -q   Quit the keyring session. \n");
 	fprintf(stderr, "    -r   Specify the replace string. \n");
+	fprintf(stderr, "\n");
+	fprintf(stderr, "VERSION: " PACKAGE_VERSION "\n");
 }
 
 int
