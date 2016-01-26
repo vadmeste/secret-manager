@@ -33,7 +33,7 @@ char* replace_str(char* buffer, char* old_str, char* new_str)
 	new_p = malloc(1);
 	memset(new_p, 0, 1);
 
-	while (pos = strstr(cur_p, old_str)) {
+	while ((pos = strstr(cur_p, old_str))) {
 		new_p = (char*) realloc(new_p, pos - cur_p + strlen(new_str) + 1);
 		strncat(new_p, cur_p, pos - cur_p );
 		strcat(new_p, new_str);

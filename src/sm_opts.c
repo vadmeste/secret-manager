@@ -40,8 +40,8 @@ sm_opts_parse(int argc, char *argv[])
 
 	struct sm_opts *opts = malloc(sizeof(struct sm_opts));
 	opts->flags = 0;
-	opts->repl_str == NULL;
-	opts->cmd == NULL;
+	opts->repl_str = NULL;
+	opts->cmd = NULL;
 
 	// Disable printing getopt errors
 	opterr = 0;
