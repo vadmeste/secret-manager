@@ -42,6 +42,7 @@ sm_opts_parse(int argc, char *argv[])
 	opts->flags = 0;
 	opts->repl_str = NULL;
 	opts->cmd = NULL;
+	opts->timeout_sec = -1;
 
 	// Disable printing getopt errors
 	opterr = 0;
@@ -56,7 +57,7 @@ sm_opts_parse(int argc, char *argv[])
 			{0, 0, 0, 0 }
 		};
 		// + will stop parsing when getopt encouters a non flag arg
-		ch = getopt_long(argc, argv, "+hvsqr:", long_options, &option_index);
+		ch = getopt_long(argc, argv, "+hvsqt:r:", long_options, &option_index);
 		if (ch == -1)
 			break;
 		switch (ch) {
@@ -72,6 +73,9 @@ sm_opts_parse(int argc, char *argv[])
 			case 'r':
 				opts->repl_str = strdup(optarg);
 				break;
+			case 't':
+				opts->timeout_sec = atoi(optarg);
+				break;
 			case 'q':
 				opts->flags |= OPT_QUIT;
 				break;
@@ -83,6 +87,8 @@ sm_opts_parse(int argc, char *argv[])
 	// Set opts default values
 	if (opts->repl_str == NULL)
 		opts->repl_str = strdup("{}");
+	if (opts->timeout_sec < 0)
+		opts->timeout_sec = 60 * 15;
 	opts->cmd = strdup("");
 
 	// Construct the cmd string

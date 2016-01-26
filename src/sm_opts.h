@@ -30,6 +30,7 @@ struct sm_opts {
 	int flags;
 	char *cmd;
 	char *repl_str;
+	int timeout_sec;
 };
 
 struct sm_opts *sm_opts_parse(int argc, char *argv[]);

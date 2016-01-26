@@ -43,6 +43,7 @@ print_usage()
 	fprintf(stderr, "    -h   Show this help. \n");
 	fprintf(stderr, "    -v   Show version information. \n");
 	fprintf(stderr, "    -s   Show current key id. \n");
+	fprintf(stderr, "    -t   Set the key id timeout. \n");
 	fprintf(stderr, "    -q   Quit the keyring session. \n");
 	fprintf(stderr, "    -r   Specify the replace string. \n");
 }
@@ -129,6 +130,9 @@ main(int argc, char *argv[])
 			goto exit;
 		}
 	}
+
+	// We should have here a valid key id, so trigger the timeout again
+	keyctl_set_timeout(key_id, (unsigned int) opts->timeout_sec);
 
 	// Replace all {} occurrences by the secret phrase
 	secret_cmd = replace_str(opts->cmd, opts->repl_str, key_payload);
