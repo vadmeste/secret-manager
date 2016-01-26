@@ -2,7 +2,7 @@ AM_CPPFLAGS = -DDATADIR=\"$(datadir)\" -DLOCALEDIR=\"$(localedir)\"
 
 bin_PROGRAMS = sm
 
-sm_SOURCES = main.c str-replace.c opts.c
+sm_SOURCES = main.c str-replace.c sm_opts.c
 
 noinst_HEADERS = str-replace.h
 

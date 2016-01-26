@@ -25,7 +25,7 @@
 
 #include "config.h"
 #include "str-replace.h"
-#include "opts.h"
+#include "sm_opts.h"
 
 #define SM_MAGIC 0x534d5f4d
 

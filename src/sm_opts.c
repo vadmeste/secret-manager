@@ -19,7 +19,7 @@
 #include <getopt.h>
 #include <string.h>
 
-#include "opts.h"
+#include "sm_opts.h"
 
 void
 sm_opts_free(struct sm_opts *opts) 
