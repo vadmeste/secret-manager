@@ -3,4 +3,5 @@ addons:
     apt:     
         packages:     
         - libkeyutils-dev
+script: /bin/sh autogen.sh; ./configure; make
 install: true
