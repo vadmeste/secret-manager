@@ -43,7 +43,6 @@ fi
  
 AC_CHECK_HEADERS([libintl.h])
 
-AC_CHECK_HEADERS([keyutils.h], [],
-				 [AC_MSG_ERROR(["Couldn't find keyutils library."])], [])
+AC_CHECK_LIB([keyutils], [add_key], [], [AC_MSG_ERROR(["Couldn't find keyutils library."])])
 
 AC_OUTPUT
