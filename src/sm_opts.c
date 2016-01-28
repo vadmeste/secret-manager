@@ -95,8 +95,10 @@ sm_opts_parse(int argc, char *argv[])
 	if (optind < argc) {
 		while (optind < argc) {
 			opts->cmd = (char *) realloc(opts->cmd, 
-					strlen(opts->cmd) + strlen(" ") + strlen(argv[optind]) + 1);
+					strlen(opts->cmd) + strlen(" ") + strlen(argv[optind]) + 2 + 1);
+			strcat(opts->cmd, "\'");
 			strcat(opts->cmd, argv[optind]);
+			strcat(opts->cmd, "\'");
 			strcat(opts->cmd, " ");
 			optind++;
 		}
