@@ -26,8 +26,6 @@ sm_opts_free(struct sm_opts *opts)
 {
 	if (opts == NULL)
 		return;
-	if (opts->cmd != NULL)
-		free(opts->cmd);
 	if (opts->repl_str != NULL)
 		free(opts->repl_str);
 	free(opts);
@@ -41,7 +39,7 @@ sm_opts_parse(int argc, char *argv[])
 	struct sm_opts *opts = malloc(sizeof(struct sm_opts));
 	opts->flags = 0;
 	opts->repl_str = NULL;
-	opts->cmd = NULL;
+	opts->argv = NULL;
 	opts->timeout_sec = -1;
 
 	// Disable printing getopt errors
@@ -89,20 +87,9 @@ sm_opts_parse(int argc, char *argv[])
 		opts->repl_str = strdup("{}");
 	if (opts->timeout_sec < 0)
 		opts->timeout_sec = 60 * 15;
-	opts->cmd = strdup("");
 
-	// Construct the cmd string
-	if (optind < argc) {
-		while (optind < argc) {
-			opts->cmd = (char *) realloc(opts->cmd, 
-					strlen(opts->cmd) + strlen(" ") + strlen(argv[optind]) + 2 + 1);
-			strcat(opts->cmd, "\'");
-			strcat(opts->cmd, argv[optind]);
-			strcat(opts->cmd, "\'");
-			strcat(opts->cmd, " ");
-			optind++;
-		}
-	}
+	// Return back the remaining args to be dealt by execvp
+	opts->argv = &argv[optind];
 
 	return opts;
 }
