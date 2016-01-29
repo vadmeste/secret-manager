@@ -53,10 +53,8 @@ print_usage()
 int
 main(int argc, char *argv[])
 {
-	int ret = 1;
-	char *secret_cmd = NULL;
-	char *subprocess_argv[4];
-
+	int i, ret = 1;
+	char **subprocess_argv = NULL;
 	struct sm_opts *opts = NULL;
 
 	key_serial_t key_id; 
@@ -141,21 +139,17 @@ main(int argc, char *argv[])
 	// We should have here a valid key id, so trigger the timeout again
 	keyctl_set_timeout(key_id, (unsigned int) opts->timeout_sec);
 
-	// Replace all {} occurrences by the secret phrase
-	secret_cmd = replace_str(opts->cmd, opts->repl_str, key_payload);
-
-	// Execute the secret cmd
-	if (secret_cmd) {
-		// Replacing the current executable image will at least return the exit
-		// code of the executed command
-		subprocess_argv[0] = "sh";
-		subprocess_argv[1] = "-c";
-		subprocess_argv[2] = secret_cmd;
-		subprocess_argv[3] = NULL;
-		execvp("/bin/sh", subprocess_argv);
-
-		assert(0);
+	// Replace {} with password in all cmd arguments
+	subprocess_argv = malloc(argc * sizeof(char*));
+	for (i = 0; opts->argv[i] != NULL; i++) {
+		subprocess_argv[i] = replace_str(opts->argv[i], opts->repl_str, key_payload);
 	}
+	subprocess_argv[i] = NULL;
+
+	// Replacing the current executable image will at least return the exit
+	execvp(subprocess_argv[0], subprocess_argv);
+
+	assert(0);
 
 exit:
 	if (opts)

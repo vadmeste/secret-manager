@@ -28,7 +28,7 @@
 // opts structure holds sm global data
 struct sm_opts {
 	int flags;
-	char *cmd;
+	char **argv;
 	char *repl_str;
 	int timeout_sec;
 };
