@@ -153,9 +153,12 @@ main(int argc, char *argv[])
 	subprocess_argv[i] = NULL;
 
 	// Replacing the current executable image will at least return the exit
-	execvp(subprocess_argv[0], subprocess_argv);
-
-	assert(0);
+	if (execvp(subprocess_argv[0], subprocess_argv) < 0) {
+		fprintf(stderr, "exec error, ");
+		perror(subprocess_argv[0]);
+	} else {
+		assert(0);
+	}
 
 exit:
 	if (opts)
