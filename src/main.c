@@ -139,6 +139,12 @@ main(int argc, char *argv[])
 	// We should have here a valid key id, so trigger the timeout again
 	keyctl_set_timeout(key_id, (unsigned int) opts->timeout_sec);
 
+	// The user didn't provide any command to execute, quit immediately
+	if (argc < 2) {
+		ret = 0;
+		goto exit;
+	}
+
 	// Replace {} with password in all cmd arguments
 	subprocess_argv = malloc(argc * sizeof(char*));
 	for (i = 0; opts->argv[i] != NULL; i++) {
