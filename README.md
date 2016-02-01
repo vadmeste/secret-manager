@@ -3,7 +3,7 @@ A simple secret manager for CLI. Only GNU/Linux is supported.
 (under heavy development, use it at your own risk !!)
 
 ## Demo
-[![demo](https://asciinema.org/a/a1fdk11gx4z4xgxl58giebl9b.png)](https://asciinema.org/a/a1fdk11gx4z4xgxl58giebl9b ?autoplay=1)
+[![demo](https://asciinema.org/a/a1fdk11gx4z4xgxl58giebl9b.png)](https://asciinema.org/a/a1fdk11gx4z4xgxl58giebl9b?autoplay=1)
 
 ## Building
 
