@@ -32,7 +32,7 @@ sm will ask for a password which will replace {} in your entered command. The pa
 ```
 $ sm curl http://your_username:{}@hostname/another_path
 ...
-`̀ `
+```
 
 To quit your sm session
 ```
